@@ -30,11 +30,17 @@ module Botbckt
 
     def receive_line(line)
       case line
-      when /^PING (.*)/ : command('PONG', $1)
+      when /^PING (.*)/:
+        command('PONG', $1)
       when /^:(\S+) PRIVMSG (.*) :~(\w+)( .*)?$/:
+        # args are optional - not all commands need/support them
         args = $4 ? [$4.squish, $1, $2] : [$1, $2]
-        Botbckt::Bot.run($3, *args) # args: command (with args), sender, channel
-      else puts line; end
+        
+         # run args: command (with args), sender, channel
+        Botbckt::Bot.run($3, *args)
+      else
+        puts line
+      end
     end
 
     def unbind
