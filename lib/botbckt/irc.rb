@@ -34,8 +34,6 @@ module Botbckt
       when /^:(\S+) PRIVMSG (.*) :~(\w+)( .*)?$/:
         args = $4 ? [$4.squish, $1, $2] : [$1, $2]
         Botbckt::Bot.run($3, *args) # args: command (with args), sender, channel
-        
-      when /^:\S* \d* #{ config.user } @ #{ '#' + config.channels.first } :(.*)/ : dequeue($1)
       else puts line; end
     end
 
