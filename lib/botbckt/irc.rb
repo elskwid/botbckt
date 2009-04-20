@@ -14,6 +14,9 @@ module Botbckt
       self.config = OpenStruct.new(options)
     end
     
+    #--
+    # TODO: Handle multiple channels
+    #++
     def say(msg)
       msg.split("\n").each do |msg|
         command "PRIVMSG", "##{config.channels.first}:", msg
