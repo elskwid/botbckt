@@ -1,5 +1,8 @@
 module Botbckt
 
+  #--
+  # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
+  #++
   class Google
     extend Commands
   
