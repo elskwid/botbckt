@@ -2,6 +2,9 @@ module Botbckt
   
   module Commands
     
+    #--
+    # Inspired by Isaac: http://github.com/ichverstehe/isaac
+    #++
     def on(command, &block)
       Botbckt::Bot.commands[command] = block
     end
