@@ -21,6 +21,7 @@ module Botbckt
       EventMachine::Timer.new(seconds) do
         say "#{user}: #{msg}"
       end
+      Botbckt::Bot.ok
     end
     
   end
