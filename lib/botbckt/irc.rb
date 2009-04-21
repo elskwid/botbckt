@@ -19,7 +19,7 @@ module Botbckt
     #++
     def say(msg)
       msg.split("\n").each do |msg|
-        command "PRIVMSG", "##{config.channels.first}:", msg
+        command "PRIVMSG", "##{config.channels.first}", ":#{msg}"
       end
     end
     
