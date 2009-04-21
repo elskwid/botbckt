@@ -35,12 +35,12 @@ module Botbckt
       case line
       when /^PING (.*)/:
         command('PONG', $1)
-      when /^:(\S+) PRIVMSG (.*) :~(\w+)( .*)?$/:
+      when /^:(\S+) PRIVMSG (.*) :(~|#{config.user}: )(\w+)( .*)?$/:
         # args are optional - not all commands need/support them
-        args = $4 ? [$4.squish, $1, $2] : [$1, $2]
+        args = $5 ? [$5.squish, $1, $2] : [$1, $2]
         
          # run args: command (with args), sender, channel
-        Botbckt::Bot.run($3, *args)
+        Botbckt::Bot.run($4, *args)
       else
         puts line
       end
