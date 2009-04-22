@@ -35,7 +35,7 @@ module Botbckt
       case line
       when /^PING (.*)/:
         command('PONG', $1)
-      when /^:(\S+) PRIVMSG (.*) :(~|#{config.user}: )(\w+)( .*)?$/:
+      when /^:(\S+) PRIVMSG (.*) :(~|#{Regexp.escape config.user}: )(\w+)( .*)?$/:
         # args are optional - not all commands need/support them
         args = $5 ? [$5.squish, $1, $2] : [$1, $2]
         
