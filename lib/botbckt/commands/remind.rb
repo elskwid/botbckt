@@ -6,7 +6,9 @@ module Botbckt
     SCALES = %w{ minute minutes second seconds hour hours }
 
     on :remind do |reminder_string, user, *args|
-      _, num, scale, msg = */in (\d+) (\w+) with (.*)/i.match(reminder_string)
+      # Somewhat faster than #match...
+      reminder_string =~ /in (\d+) (\w+) with (.*)/i
+      num, scale, msg = $1, $2, $3
       
       if SCALES.include?(scale)
       	time = num.to_i.send(scale.to_sym).seconds
