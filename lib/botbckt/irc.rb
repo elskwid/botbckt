@@ -27,6 +27,9 @@ module Botbckt #:nodoc:
     
     # Use IRC.connect; this method is not for you.
     #
+    #--
+    # TODO: Ensure options[:channels] is always an Array
+    #++
     def initialize(options) #:nodoc:
       self.config = OpenStruct.new(options)
       
@@ -39,9 +42,9 @@ module Botbckt #:nodoc:
     #--
     # TODO: Handle multiple channels
     #++
-    def say(msg)
+    def say(msg, channel = config.channels.first)
       msg.split("\n").each do |msg|
-        command "PRIVMSG", "##{config.channels.first}", ":#{msg}"
+        command "PRIVMSG", "##{channel}", ":#{msg}"
       end
     end
     
