@@ -10,7 +10,7 @@ module Botbckt
     end
     
     def say(msg)
-      Botbckt::IRC.connection.say msg
+      Botbckt::Bot.say msg
     end
     
   end
