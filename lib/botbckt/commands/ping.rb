@@ -1,5 +1,7 @@
 module Botbckt
-  
+
+  # Returns 'PONG!' in-channel
+  #
   class Ping
     extend Commands
     

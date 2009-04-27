@@ -1,8 +1,9 @@
 module Botbckt
   
-  #--
+  # Feeds the bot a tasty treat.
+  #
   # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
-  #++
+  #
   class Snack
     extend Commands
     

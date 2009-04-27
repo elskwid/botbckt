@@ -1,5 +1,12 @@
 module Botbckt
-  
+
+  # Schedules a reminder for a period of seconds, minutes or hours to be
+  # repeated in-channel:
+  #
+  # < user> ~remind in 5 minutes with message
+  # ... five minutes
+  # < botbckt> user: message
+  #
   class Remind
     extend Commands
 
@@ -22,7 +29,7 @@ module Botbckt
     
     private
     
-    def self.remind(user, msg, seconds)
+    def self.remind(user, msg, seconds) #:nodoc:
       EventMachine::Timer.new(seconds) do
         say "#{user}: #{msg}"
       end
