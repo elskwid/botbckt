@@ -22,6 +22,9 @@ module Botbckt #:nodoc:
       ticker, price, change = response['t'], response['l'], response['c']
       
       "#{ticker} - $#{price} (#{change})"
+    rescue OpenURI::HTTPError => e
+      log "ERROR: #{e}"
+      say Botbckt::Bot.befuddled
     end
   end
   
