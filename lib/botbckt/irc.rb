@@ -34,6 +34,10 @@ module Botbckt
       config.channels.each { |channel| command("JOIN", "##{ channel }")  } if config.channels
     end
 
+    #--
+    # FIXME: Re-order commands args such that 1-2 arity commands can still access
+    #        both sender and channel
+    #++
     def receive_line(line)
       case line
       when /^PING (.*)/:
