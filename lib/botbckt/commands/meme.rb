@@ -1,9 +1,9 @@
-module Botbckt
+module Botbckt #:nodoc:
   
   # Grabs the first boxofjunk meme and returns output in-channel:
   #
-  # < user> ~meme
-  # < botbckt> THIS IS LARGE. I CAN TELL BY THE DRINKS, AND FROM HAVING SEEN A LOT OF DRAGONS IN MY DAY.
+  #  < user> ~meme
+  #  < botbckt> THIS IS LARGE. I CAN TELL BY THE DRINKS, AND FROM HAVING SEEN A LOT OF DRAGONS IN MY DAY.
   #
   class Meme
     extend Commands

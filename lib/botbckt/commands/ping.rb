@@ -1,4 +1,4 @@
-module Botbckt
+module Botbckt #:nodoc:
 
   # Returns 'PONG!' in-channel
   #

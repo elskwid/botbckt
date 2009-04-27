@@ -1,4 +1,4 @@
-module Botbckt
+module Botbckt #:nodoc:
   
   # This acts as a kind of abstract class for Botbckt commands. Extend your
   # command class with this module to define new bot commands.

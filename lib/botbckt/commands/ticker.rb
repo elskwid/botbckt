@@ -1,10 +1,10 @@
-module Botbckt
+module Botbckt #:nodoc:
   
   # Grabs the current stock price of a symbol from Google Finance and displays
   # in-channel:
   #
-  # < user> ~ticker GOOG
-  # < botbckt> GOOG - $391.06 (+0.06)
+  #  < user> ~ticker GOOG
+  #  < botbckt> GOOG - $391.06 (+0.06)
   #
   class Ticker
     extend Commands

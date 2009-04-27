@@ -1,4 +1,4 @@
-module Botbckt
+module Botbckt #:nodoc:
   
   # Create a new IRC bot. See Bot.start to get started.
   #
@@ -18,8 +18,7 @@ module Botbckt
     # :password<String>:: A password to send to the Nickserv. Optional.
     # :server<String>:: The FQDN of the IRC server. Required.
     # :port<~to_i>:: The port number of the IRC server. Required.
-    # :channels<Array[String]>:: An array of channels to join. Channel names
-    #   should *not* include the '#' prefix. Required.
+    # :channels<Array[String]>:: An array of channels to join. Channel names should *not* include the '#' prefix. Required.
     # :log<String>:: The name of a log file. Defaults to 'botbckt.log'.
     #
     def self.start(options)

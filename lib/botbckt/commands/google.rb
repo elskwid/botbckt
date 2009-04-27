@@ -1,11 +1,11 @@
-module Botbckt
+module Botbckt #:nodoc:
 
   # Sends a query to Google via the JSON API and returns output in-channel:
   #
-  # < user> ~google ruby
-  # < botbckt> First out of 93900000 results:
-  # < botbckt> Ruby Programming Language
-  # < botbckt> http://www.ruby-lang.org/
+  #  < user> ~google ruby
+  #  < botbckt> First out of 93900000 results:
+  #  < botbckt> Ruby Programming Language
+  #  < botbckt> http://www.ruby-lang.org/
   #
   # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
   #

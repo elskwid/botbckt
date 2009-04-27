@@ -1,4 +1,4 @@
-module Botbckt
+module Botbckt #:nodoc:
   
   # Feeds the bot a tasty treat.
   #

@@ -1,11 +1,11 @@
-module Botbckt
+module Botbckt #:nodoc:
 
   # Schedules a reminder for a period of seconds, minutes or hours to be
   # repeated in-channel:
   #
-  # < user> ~remind in 5 minutes with message
-  # ... five minutes
-  # < botbckt> user: message
+  #  < user> ~remind in 5 minutes with message
+  #  ... five minutes
+  #  < botbckt> user: message
   #
   class Remind
     extend Commands
