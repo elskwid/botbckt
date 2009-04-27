@@ -24,6 +24,7 @@ module Botbckt #:nodoc:
       "#{ticker} - $#{price} (#{change})"
     rescue OpenURI::HTTPError => e
       say Botbckt::Bot.befuddled
+      nil
     end
   end
   

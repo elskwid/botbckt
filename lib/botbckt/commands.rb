@@ -23,7 +23,7 @@ module Botbckt #:nodoc:
     # msg<String>:: A message to send to the channel
     #
     def say(msg)
-      Botbckt::Bot.say msg
+      Botbckt::Bot.say(msg) if msg
     end
     
   end
