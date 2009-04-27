@@ -30,8 +30,7 @@ module Botbckt #:nodoc:
     def initialize(options) #:nodoc:
       self.config = OpenStruct.new(options)
       
-      log = config[:log] || 'botbckt.log'
-      @logger = ActiveSupport::BufferedLogger.new(log)
+      @logger = ActiveSupport::BufferedLogger.new(self.config.log || 'botbckt.log')
     end
     
     # ==== Parameters
