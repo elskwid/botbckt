@@ -12,7 +12,7 @@ module Botbckt #:nodoc:
   class Google
     extend Commands
   
-    on :google do |query, *args|
+    on :google do |sender, channel, query|
       result = google(query)
       say "First out of #{result.first} results:"
       say result.last['titleNoFormatting']

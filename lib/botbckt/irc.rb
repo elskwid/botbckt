@@ -53,19 +53,16 @@ module Botbckt #:nodoc:
       config.channels.each { |channel| command("JOIN", "##{ channel }")  } if config.channels
     end
 
-    #--
-    # FIXME: Re-order commands args such that 1-2 arity commands can still access
-    #        both sender and channel
-    #++
     def receive_line(line) #:nodoc:
       case line
       when /^PING (.*)/:
         command('PONG', $1)
       when /^:(\S+) PRIVMSG (.*) :(~|#{Regexp.escape config.user}: )(\w+)( .*)?$/:
         # args are optional - not all commands need/support them
-        args = $5 ? [$5.squish, $1, $2] : [$1, $2]
+        args = [$1, $2]
+        args << $5.squish if $5
         
-         # run args: command (with args), sender, channel
+         # run args: command, sender, channel, optional args
         Botbckt::Bot.run($4, *args)
       else
         log line

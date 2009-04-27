@@ -9,7 +9,7 @@ module Botbckt #:nodoc:
   class Ticker
     extend Commands
     
-    on :ticker do |symbol, *args|
+    on :ticker do |sender, channel, symbol|
       say stock_price(symbol)
     end
     

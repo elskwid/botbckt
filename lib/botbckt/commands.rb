@@ -15,6 +15,11 @@ module Botbckt #:nodoc:
     # proc<Proc>:: Proc to execute when the command is triggered.
     # &block:: Block to execute when the command is triggered.
     #
+    # ==== Callable args
+    # sender<String>:: The user and host of the triggering user. Example: botbckt!n=botbckt@unaffiliated/botbckt
+    # channel<String>:: The channel on which the command was triggered. Example: #ruby-lang
+    # *args:: Any string following the trigger in the message
+    #
     def on(command, proc = nil, &block)
       Botbckt::Bot.commands[command.to_sym] = proc || block
     end

@@ -12,7 +12,7 @@ module Botbckt #:nodoc:
 
     SCALES = %w{ minute minutes second seconds hour hours }
 
-    on :remind do |reminder_string, user, *args|
+    on :remind do |user, channel, reminder_string|
       # Somewhat faster than #match...
       reminder_string =~ /in (\d+) (\w+) with (.*)/i
       num, scale, msg = $1, $2, $3
