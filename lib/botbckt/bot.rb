@@ -14,6 +14,9 @@ module Botbckt
       end
     end
     
+    #--
+    # TODO: Before/after callbacks?
+    #++
     def self.run(command, *args)
       proc = self.commands[command.to_sym]
       proc ? proc.call(*args) : say(befuddled)
