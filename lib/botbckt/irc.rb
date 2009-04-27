@@ -12,6 +12,9 @@ module Botbckt
     
     def initialize(options)
       self.config = OpenStruct.new(options)
+      
+      log = config[:log] || 'botbckt.log'
+      @logger = ActiveSupport::BufferedLogger.new(log)
     end
     
     #--
@@ -42,7 +45,7 @@ module Botbckt
          # run args: command (with args), sender, channel
         Botbckt::Bot.run($4, *args)
       else
-        puts line
+        log line
       end
     end
 
@@ -55,8 +58,17 @@ module Botbckt
     
     private
     
+    #--
+    # TODO: Add log levels
+    #++
+    def log(msg)
+      @logger.add(0, msg)
+    end
+    
     def command(*cmd)
-      send_data "#{ cmd.flatten.join(' ') }\r\n"
+      line = "#{ cmd.flatten.join(' ') }\r\n"
+      send_data line
+      log line
     end
     
   end
