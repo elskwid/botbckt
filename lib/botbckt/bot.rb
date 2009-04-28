@@ -20,6 +20,7 @@ module Botbckt #:nodoc:
     # :port<~to_i>:: The port number of the IRC server. Required.
     # :channels<Array[String]>:: An array of channels to join. Channel names should *not* include the '#' prefix. Required.
     # :log<String>:: The name of a log file. Defaults to 'botbckt.log'.
+    # :log_level<Integer>:: The minimum severity level to log. Defaults to 1 (INFO).
     #
     def self.start(options)
       EventMachine::run do
