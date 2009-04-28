@@ -63,7 +63,7 @@ module Botbckt #:nodoc:
       case line
       when /^PING (.*)/:
         command('PONG', $1)
-      when /^:(\S+) PRIVMSG (.*) :(~|#{Regexp.escape config.user}: )(\w+)( .*)?$/:
+      when /^:(\S+) PRIVMSG #(.*) :(~|#{Regexp.escape config.user}: )(\w+)( .*)?$/:
         # args are optional - not all commands need/support them
         args = [$1, $2]
         args << $5.squish if $5
