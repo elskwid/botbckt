@@ -41,6 +41,7 @@ module Botbckt #:nodoc:
     
     # ==== Parameters
     # msg<String>:: A message to send to the channel
+    # channel<String>:: The channel to send the message. Defaults to first configured channel.
     #
     #--
     # TODO: Handle multiple channels
