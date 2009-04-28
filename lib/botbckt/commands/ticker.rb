@@ -10,21 +10,20 @@ module Botbckt #:nodoc:
     extend Commands
     
     on :ticker do |sender, channel, symbol|
-      say stock_price(symbol)
+      stock_price symbol, channel
     end
     
     private
     
-    def self.stock_price(symbol) #:nodoc:
+    def self.stock_price(symbol, channel) #:nodoc:
       json     = open("http://www.google.com/finance/info?q=#{CGI.escape(symbol)}")
       response = JSON.parse(json.read[4..-1]).first
       
       ticker, price, change = response['t'], response['l'], response['c']
       
-      "#{ticker} - $#{price} (#{change})"
+      say "#{ticker} - $#{price} (#{change})", channel
     rescue OpenURI::HTTPError => e
-      say Botbckt::Bot.befuddled
-      nil
+      say Botbckt::Bot.befuddled, channel
     end
   end
   

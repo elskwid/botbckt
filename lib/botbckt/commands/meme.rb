@@ -8,8 +8,8 @@ module Botbckt #:nodoc:
   class Meme
     extend Commands
     
-    on :meme do |*args|
-      say meme
+    on :meme do |sender, channel, *args|
+      say meme, channel
     end
    
    private

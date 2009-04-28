@@ -14,9 +14,9 @@ module Botbckt #:nodoc:
   
     on :google do |sender, channel, query|
       result = google(query)
-      say "First out of #{result.first} results:"
-      say result.last['titleNoFormatting']
-      say result.last['unescapedUrl']
+      say "First out of #{result.first} results:", channel
+      say result.last['titleNoFormatting'], channel
+      say result.last['unescapedUrl'], channel
     end
   
     private

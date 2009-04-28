@@ -61,9 +61,10 @@ module Botbckt #:nodoc:
     
     # ==== Parameters
     # msg<String>:: A message to send to the channel
+    # channel<String>:: The channel to send the message. Required.
     #
-    def self.say(msg)
-      Botbckt::IRC.connection.say msg
+    def self.say(msg, channel)
+      Botbckt::IRC.connection.say msg, channel
     end
     
   end

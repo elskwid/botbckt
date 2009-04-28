@@ -21,19 +21,19 @@ module Botbckt #:nodoc:
       	time = num.to_i.send(scale.to_sym).seconds
 
         # TODO: Abstraction here, please.
-      	remind(user.gsub(/([^!]+).*/, '\1'), msg, time)
+      	remind(user.gsub(/([^!]+).*/, '\1'), channel, msg, time)
       else 
-        say Botbckt::Bot.befuddled
+        say Botbckt::Bot.befuddled, channel
       end
     end
     
     private
     
-    def self.remind(user, msg, seconds) #:nodoc:
+    def self.remind(user, channel, msg, seconds) #:nodoc:
       EventMachine::Timer.new(seconds) do
-        say "#{user}: #{msg}"
+        say "#{user}: #{msg}", channel
       end
-      say Botbckt::Bot.ok
+      say Botbckt::Bot.ok, channel
     end
     
   end

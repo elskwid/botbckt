@@ -25,10 +25,11 @@ module Botbckt #:nodoc:
     end
     
     # ==== Parameters
-    # msg<String>:: A message to send to the channel
+    # msg<String>:: A message to send to the channel. Required.
+    # channel<String>:: The channel to send the message. Required.
     #
-    def say(msg)
-      Botbckt::Bot.say(msg) if msg
+    def say(msg, channel)
+      Botbckt::Bot.say(msg, channel) if msg
     end
     
   end

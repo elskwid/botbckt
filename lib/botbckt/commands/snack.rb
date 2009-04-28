@@ -7,8 +7,8 @@ module Botbckt #:nodoc:
   class Snack
     extend Commands
     
-    on :botsnack do |*args|
-      say 'nom nom nom'
+    on :botsnack do |sender, channel, *args|
+      say 'nom nom nom', channel
     end
     
   end

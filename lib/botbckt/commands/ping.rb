@@ -5,8 +5,8 @@ module Botbckt #:nodoc:
   class Ping
     extend Commands
     
-    on :ping do |*args|
-      say 'PONG!'
+    on :ping do |sender, channel, *args|
+      say 'PONG!', channel
     end
   end
   
