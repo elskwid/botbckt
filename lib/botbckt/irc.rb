@@ -43,9 +43,6 @@ module Botbckt #:nodoc:
     # msg<String>:: A message to send to the channel. Required.
     # channel<String>:: The channel to send the message. Required.
     #
-    #--
-    # TODO: Handle multiple channels
-    #++
     def say(msg, channel)
       msg.split("\n").each do |msg|
         command "PRIVMSG", "##{channel}", ":#{msg}"
