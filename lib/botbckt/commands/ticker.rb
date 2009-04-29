@@ -10,7 +10,7 @@ module Botbckt #:nodoc:
     extend Commands
     
     on :ticker do |sender, channel, symbol|
-      stock_price symbol, channel
+      stock_price symbol.split(' ').first, channel
     end
     
     private
