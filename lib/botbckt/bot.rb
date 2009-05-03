@@ -39,10 +39,10 @@ module Botbckt #:nodoc:
       callable = self.commands[command.to_sym]
       
       if callable.is_a?(Class)
-        callable = callable.new
+        callable = callable.new(sender, channel, *args)
       end
       
-      callable ? callable.call(sender, channel, *args) : say(befuddled, channel)
+      callable.respond_to?(:call) ? callable.call(sender, channel, *args) : say(befuddled, channel)
     end
     
     # Returns a random "affirmative" message. Use to acknowledge user input.
