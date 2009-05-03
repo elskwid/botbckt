@@ -23,7 +23,7 @@ module Botbckt #:nodoc:
     
     private
     
-    def conditions
+    def self.conditions
       xml     = (search(query)/'txt_forecast')
       daytime = (xml/'forecastday[1]')
       evening = (xml/'forecastday[2]')
@@ -35,7 +35,7 @@ module Botbckt #:nodoc:
       EOF
     end
     
-    def forecast(query)
+    def self.forecast(query)
       xml = (search(query)/'simpleforecast/forecastday[1]')
       
       str = <<-EOF
@@ -46,7 +46,7 @@ module Botbckt #:nodoc:
       EOF
     end
     
-    def search(query)
+    def self.search(query)
       xml = open("http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=#{CGI.escape(query)}")
       Hpricot.XML(xml)
     end
