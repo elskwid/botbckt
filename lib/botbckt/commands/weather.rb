@@ -34,7 +34,7 @@ module Botbckt #:nodoc:
     def self.forecast(query)
       xml = (search(query)/'simpleforecast/forecastday[1]')
       
-      "Today's Forecast -\nHigh: #{(xml/'high/fahrenheit').inner_html}F\nLow: #{(xml/'low/fahrenheit').inner_html}F\nConditions: #{(xml/'conditions').inner_html}"
+      "Today's Forecast: #{(xml/'high/fahrenheit').inner_html}F/#{(xml/'low/fahrenheit').inner_html}F (#{(xml/'conditions').inner_html})"
     end
     
     def self.search(query)
