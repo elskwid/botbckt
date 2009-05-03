@@ -5,16 +5,19 @@ module Botbckt #:nodoc:
   #  < user> ~meme
   #  < botbckt> THIS IS LARGE. I CAN TELL BY THE DRINKS, AND FROM HAVING SEEN A LOT OF DRAGONS IN MY DAY.
   #
-  class Meme
-    extend Botbckt::Commands
+  class Meme < Command
     
-    on :meme do |sender, channel, *args|
+    trigger :meme
+    
+    def initialize; end #:nodoc:
+    
+    def call(sender, channel, *args)
       say meme, channel
     end
    
    private
    
-   def self.meme #:nodoc:
+   def meme #:nodoc:
      open("http://meme.boxofjunk.ws/moar.txt?lines=1").read.chomp
    end
     

@@ -6,10 +6,13 @@ module Botbckt #:nodoc:
   #  < user> ~ticker GOOG
   #  < botbckt> GOOG - $391.06 (+0.06)
   #
-  class Ticker
-    extend Botbckt::Commands
+  class Ticker < Command
     
-    on :ticker do |sender, channel, symbol|
+    trigger :ticker
+    
+    def initialize; end #:nodoc:
+    
+    def call(sender, channel, symbol)
       begin
         say stock_price(symbol.split(' ').first), channel
       # TODO: Log me.
@@ -20,7 +23,7 @@ module Botbckt #:nodoc:
     
     private
     
-    def self.stock_price(symbol) #:nodoc:
+    def stock_price(symbol) #:nodoc:
       json     = open("http://www.google.com/finance/info?q=#{CGI.escape(symbol)}")
       response = JSON.parse(json.read[4..-1]).first
       

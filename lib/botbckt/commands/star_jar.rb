@@ -10,10 +10,13 @@ module Botbckt #:nodoc:
   #  < user> ~star user
   #  < botbckt> user: No star for you!
   #
-  class StarJar
-    extend Botbckt::Commands
+  class StarJar < Command
    
-    on :star do |giver, channel, receiver|
+    trigger :star
+   
+    def initialize; end #:nodoc:
+   
+    def call(giver, channel, receiver)
       receiver.split(' ').each do |rcv|
         if rcv != giver.gsub(/([^!]+).*/, '\1')
           say "#{rcv}: Gold star for you!", channel

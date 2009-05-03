@@ -2,10 +2,13 @@ module Botbckt #:nodoc:
 
   # Returns 'PONG!' in-channel
   #
-  class Ping
-    extend Botbckt::Commands
+  class Ping < Command
     
-    on :ping do |sender, channel, *args|
+    trigger :ping
+    
+    def initialize; end #:nodoc:
+    
+    def call(sender, channel, *args)
       say 'PONG!', channel
     end
   end

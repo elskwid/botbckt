@@ -7,12 +7,15 @@ module Botbckt #:nodoc:
   #  ... five minutes
   #  < botbckt> user: message
   #
-  class Remind
-    extend Botbckt::Commands
+  class Remind < Command
 
     SCALES = %w{ minute minutes second seconds hour hours }
 
-    on :remind do |user, channel, reminder_string|
+    trigger :remind
+    
+    def initialize; end #:nodoc:
+
+    def call(user, channel, reminder_string)
       # Somewhat faster than #match...
       reminder_string =~ /in (\d+) (\w+) with (.*)/i
       num, scale, msg = $1, $2, $3
@@ -29,7 +32,7 @@ module Botbckt #:nodoc:
     
     private
     
-    def self.remind(user, channel, msg, seconds) #:nodoc:
+    def remind(user, channel, msg, seconds) #:nodoc:
       EventMachine::Timer.new(seconds) do
         say "#{user}: #{msg}", channel
       end

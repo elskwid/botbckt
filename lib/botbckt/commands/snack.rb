@@ -4,10 +4,13 @@ module Botbckt #:nodoc:
   #
   # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
   #
-  class Snack
-    extend Botbckt::Commands
+  class Snack < Command
     
-    on :botsnack do |sender, channel, *args|
+    trigger :botsnack
+    
+    def initialize; end #:nodoc:
+    
+    def call(sender, channel, *args)
       say 'nom nom nom', channel
     end
     
