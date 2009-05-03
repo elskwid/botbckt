@@ -30,8 +30,8 @@ module Botbckt #:nodoc:
       
       str = <<-EOF
         Conditions -\n
-        Today: #{daytime/'fcttext'}\n
-        Tonight: #{evening/'fcttext'}
+        Today: #{(daytime/'fcttext').inner_html}\n
+        Tonight: #{(evening/'fcttext').inner_html}
       EOF
     end
     
@@ -40,9 +40,9 @@ module Botbckt #:nodoc:
       
       str = <<-EOF
         Today's Forecast -\n
-        High: #{xml/'high/fahrenheit'}F\n
-        Low: #{xml/'low/fahrenheit'}F\n
-        Conditions: #{xml/'conditions'}
+        High: #{(xml/'high/fahrenheit').inner_html}F\n
+        Low: #{(xml/'low/fahrenheit').inner_html}F\n
+        Conditions: #{(xml/'conditions').inner_html}
       EOF
     end
     
