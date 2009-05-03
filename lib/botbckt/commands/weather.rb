@@ -23,7 +23,7 @@ module Botbckt #:nodoc:
     
     private
     
-    def self.conditions
+    def self.conditions(query)
       xml     = (search(query)/'txt_forecast')
       daytime = (xml/'forecastday[1]')
       evening = (xml/'forecastday[2]')
