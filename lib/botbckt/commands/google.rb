@@ -9,10 +9,13 @@ module Botbckt #:nodoc:
   #
   # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
   #
-  class Google
-    extend Commands
+  class Google < Command
   
-    on :google do |sender, channel, query|
+    trigger :google
+  
+    def initialize(*args); end #:nodoc:
+  
+    def call(sender, channel, query)
       result = google(query)
       say "First out of #{result.first} results:", channel
       say result.last['titleNoFormatting'], channel
@@ -21,7 +24,7 @@ module Botbckt #:nodoc:
   
     private
   
-    def self.google(term) #:nodoc:
+    def google(term) #:nodoc:
       json     = open("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=#{CGI.escape(term)}")
       response = JSON.parse(json.read)
 

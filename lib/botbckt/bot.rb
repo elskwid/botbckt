@@ -36,8 +36,13 @@ module Botbckt #:nodoc:
     # TODO: Before/after callbacks?
     #++
     def self.run(command, sender, channel, *args)
-      proc = self.commands[command.to_sym]
-      proc ? proc.call(sender, channel, *args) : say(befuddled, channel)
+      callable = self.commands[command.to_sym]
+      
+      if callable.is_a?(Class)
+        callable = callable.new
+      end
+      
+      callable ? callable.call(sender, channel, *args) : say(befuddled, channel)
     end
     
     # Returns a random "affirmative" message. Use to acknowledge user input.
