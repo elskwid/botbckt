@@ -45,5 +45,3 @@ module Botbckt #:nodoc:
   end
   
 end
-
-Dir[File.dirname(__FILE__) + '/commands/*'].each { |lib| require lib }
