@@ -11,7 +11,7 @@ module Botbckt #:nodoc:
   #  < botbckt> Tonight: Mostly clear. Lows in the mid to upper 50s. West winds 10 to 20 mph in the evening.
   #
   class Weather
-    extend Commands
+    extend Botbckt::Commands
     
     on :forecast do |sender, channel, query|
       begin

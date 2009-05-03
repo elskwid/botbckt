@@ -6,7 +6,7 @@ module Botbckt #:nodoc:
   #  < botbckt> THIS IS LARGE. I CAN TELL BY THE DRINKS, AND FROM HAVING SEEN A LOT OF DRAGONS IN MY DAY.
   #
   class Meme
-    extend Commands
+    extend Botbckt::Commands
     
     on :meme do |sender, channel, *args|
       say meme, channel

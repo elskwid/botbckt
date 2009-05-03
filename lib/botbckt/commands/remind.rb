@@ -8,7 +8,7 @@ module Botbckt #:nodoc:
   #  < botbckt> user: message
   #
   class Remind
-    extend Commands
+    extend Botbckt::Commands
 
     SCALES = %w{ minute minutes second seconds hour hours }
 

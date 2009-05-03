@@ -7,7 +7,7 @@ module Botbckt #:nodoc:
   #  < botbckt> GOOG - $391.06 (+0.06)
   #
   class Ticker
-    extend Commands
+    extend Botbckt::Commands
     
     on :ticker do |sender, channel, symbol|
       begin

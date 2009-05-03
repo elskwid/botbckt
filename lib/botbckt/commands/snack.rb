@@ -5,7 +5,7 @@ module Botbckt #:nodoc:
   # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
   #
   class Snack
-    extend Commands
+    extend Botbckt::Commands
     
     on :botsnack do |sender, channel, *args|
       say 'nom nom nom', channel

@@ -11,7 +11,7 @@ module Botbckt #:nodoc:
   #  < botbckt> user: No star for you!
   #
   class StarJar
-    extend Commands
+    extend Botbckt::Commands
    
     on :star do |giver, channel, receiver|
       receiver.split(' ').each do |rcv|
