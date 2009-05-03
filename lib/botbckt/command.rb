@@ -22,7 +22,7 @@ module Botbckt #:nodoc:
     # *args:: Any string following the trigger in the message
     #
     def call(*args)
-      raise NoMethodError, "Implement #initialize in a subclass."
+      raise NoMethodError, "Implement #call in a subclass."
     end
     
     # Registers a new command with the bot.
