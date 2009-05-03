@@ -28,22 +28,13 @@ module Botbckt #:nodoc:
       daytime = (xml/'forecastday[1]')
       evening = (xml/'forecastday[2]')
       
-      str = <<-EOF
-        Conditions -\n
-        Today: #{(daytime/'fcttext').inner_html}\n
-        Tonight: #{(evening/'fcttext').inner_html}
-      EOF
+      "Conditions -\nToday: #{(daytime/'fcttext').inner_html}\nTonight: #{(evening/'fcttext').inner_html}"
     end
     
     def self.forecast(query)
       xml = (search(query)/'simpleforecast/forecastday[1]')
       
-      str = <<-EOF
-        Today's Forecast -\n
-        High: #{(xml/'high/fahrenheit').inner_html}F\n
-        Low: #{(xml/'low/fahrenheit').inner_html}F\n
-        Conditions: #{(xml/'conditions').inner_html}
-      EOF
+      "Today's Forecast -\nHigh: #{(xml/'high/fahrenheit').inner_html}F\nLow: #{(xml/'low/fahrenheit').inner_html}F\nConditions: #{(xml/'conditions').inner_html}"
     end
     
     def self.search(query)
