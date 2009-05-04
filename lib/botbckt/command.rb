@@ -6,7 +6,8 @@ module Botbckt #:nodoc:
   # Command subclasses must (re-)define initialize and call.
   #
   class Command
-
+    include Utilities
+    
     # ==== Parameters (args)
     # sender<String>:: The user and host of the triggering user. Example: botbckt!n=botbckt@unaffiliated/botbckt
     # channel<String>:: The channel on which the command was triggered. Example: #ruby-lang

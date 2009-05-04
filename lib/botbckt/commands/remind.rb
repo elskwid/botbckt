@@ -23,8 +23,7 @@ module Botbckt #:nodoc:
       if SCALES.include?(scale)
       	time = num.to_i.send(scale.to_sym).seconds
 
-        # TODO: Abstraction here, please.
-      	remind(user.gsub(/([^!]+).*/, '\1'), channel, msg, time)
+      	remind(freenode_split(user).first, channel, msg, time)
       else 
         say Botbckt::Bot.befuddled, channel
       end

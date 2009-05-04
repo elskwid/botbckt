@@ -18,7 +18,7 @@ module Botbckt #:nodoc:
    
     def call(giver, channel, receiver)
       receiver.split(' ').each do |rcv|
-        if rcv != giver.gsub(/([^!]+).*/, '\1')
+        if rcv != freenode_split(giver).first
           say "#{rcv}: Gold star for you!", channel
         else
           say "#{rcv}: No star for you!", channel
