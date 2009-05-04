@@ -10,10 +10,9 @@ module Botbckt #:nodoc:
   #  < botbckt> Today: Areas of low clouds in the morning then mostly sunny. Highs in the upper 60s to mid 70s. West winds 10 to 20 mph in the afternoon.
   #  < botbckt> Tonight: Mostly clear. Lows in the mid to upper 50s. West winds 10 to 20 mph in the evening.
   #
-  class Weather
-    extend Botbckt::Commands
+  class Weather < Command
     
-    on :forecast do |sender, channel, query|
+    trigger :forecast do |sender, channel, query|
       begin
         say forecast(query), channel
       # TODO: Log me.
@@ -22,7 +21,7 @@ module Botbckt #:nodoc:
       end
     end
     
-    on :conditions do |sender, channel, query|
+    trigger :conditions do |sender, channel, query|
       begin
         say conditions(query), channel
       # TODO: Log me.
