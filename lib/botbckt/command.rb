@@ -2,8 +2,8 @@ require 'singleton'
 
 module Botbckt #:nodoc:
   
-  # This acts as a kind of abstract class for Botbckt commands. Extend your
-  # command class with this module to define new bot commands.
+  # This acts as a kind of abstract class for Botbckt commands. Subclass
+  # this class to define new bot commands.
   #
   # Command subclasses must (re-)define call. If any setup is needed, override
   # create! and return self.instance.
