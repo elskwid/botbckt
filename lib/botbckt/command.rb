@@ -48,8 +48,14 @@ module Botbckt #:nodoc:
     # msg<String>:: A message to send to the channel. Required.
     # channel<String>:: The channel to send the message. Required.
     #
-    def say(msg, channel)
+    def self.say(msg, channel)
       Botbckt::Bot.say(msg, channel) if msg
+    end
+    
+    # Proxy for Command.say
+    #
+    def say(msg, channel)
+      self.class.say(msg, channel)
     end
     
   end
