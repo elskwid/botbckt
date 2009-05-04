@@ -10,8 +10,6 @@ module Botbckt #:nodoc:
     
     trigger :ticker
     
-    def initialize; end #:nodoc:
-    
     def call(sender, channel, symbol)
       begin
         say stock_price(symbol.split(' ').first), channel

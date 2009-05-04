@@ -7,9 +7,7 @@ module Botbckt #:nodoc:
   class Snack < Command
     
     trigger :botsnack
-    
-    def initialize; end #:nodoc:
-    
+
     def call(sender, channel, *args)
       say 'nom nom nom', channel
     end

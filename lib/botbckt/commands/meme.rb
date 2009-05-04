@@ -8,9 +8,7 @@ module Botbckt #:nodoc:
   class Meme < Command
     
     trigger :meme
-    
-    def initialize; end #:nodoc:
-    
+
     def call(sender, channel, *args)
       say meme, channel
     end

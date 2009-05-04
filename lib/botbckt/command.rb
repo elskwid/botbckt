@@ -1,3 +1,5 @@
+require 'singleton'
+
 module Botbckt #:nodoc:
   
   # This acts as a kind of abstract class for Botbckt commands. Extend your
@@ -7,16 +9,23 @@ module Botbckt #:nodoc:
   #
   class Command
     include Utilities
+    include Singleton
     
+    # By default, returns the singleton instance. Override in a subclass if
+    # a different behavior is expected.
+    #
     # ==== Parameters (args)
     # sender<String>:: The user and host of the triggering user. Example: botbckt!n=botbckt@unaffiliated/botbckt
     # channel<String>:: The channel on which the command was triggered. Example: #ruby-lang
     # *args:: Any string following the trigger in the message
     #
-    def initialize(*args)
-      raise NoMethodError, "Implement #initialize in a subclass."
+    def self.create!(*args)
+      self.instance
     end
 
+    # This method is executed by the Bot when a command is triggered. Override
+    # it in a subclass to get the behavior you want.
+    #
     # ==== Parameters (args)
     # sender<String>:: The user and host of the triggering user. Example: botbckt!n=botbckt@unaffiliated/botbckt
     # channel<String>:: The channel on which the command was triggered. Example: #ruby-lang

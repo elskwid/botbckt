@@ -12,9 +12,7 @@ module Botbckt #:nodoc:
   class Google < Command
   
     trigger :google
-  
-    def initialize(*args); end #:nodoc:
-  
+    
     def call(sender, channel, query)
       result = google(query)
       say "First out of #{result.first} results:", channel

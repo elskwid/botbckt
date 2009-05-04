@@ -39,7 +39,9 @@ module Botbckt #:nodoc:
       callable = self.commands[command.to_sym]
       
       if callable.is_a?(Class)
-        callable = callable.new(sender, channel, *args)
+        # Callables are Singletons; we use #create! as a convention to give
+        # possible setup code a place to live. 
+        callable = callable.create!(sender, channel, *args)
       end
       
       callable.respond_to?(:call) ? callable.call(sender, channel, *args) : say(befuddled, channel)

@@ -13,8 +13,6 @@ module Botbckt #:nodoc:
 
     trigger :remind
     
-    def initialize; end #:nodoc:
-
     def call(user, channel, reminder_string)
       # Somewhat faster than #match...
       reminder_string =~ /in (\d+) (\w+) with (.*)/i

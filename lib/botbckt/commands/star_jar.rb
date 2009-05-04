@@ -14,8 +14,6 @@ module Botbckt #:nodoc:
    
     trigger :star
    
-    def initialize; end #:nodoc:
-   
     def call(giver, channel, receiver)
       receiver.split(' ').each do |rcv|
         if rcv != freenode_split(giver).first
