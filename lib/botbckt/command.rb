@@ -40,8 +40,8 @@ module Botbckt #:nodoc:
     # ==== Parameters
     # command<Symbol>:: In-channel trigger for the command. Required.
     #
-    def self.trigger(command)
-      Botbckt::Bot.commands[command.to_sym] = self
+    def self.trigger(command, &block)
+      Botbckt::Bot.commands[command.to_sym] = block_given? ? block : self
     end
     
     # ==== Parameters
