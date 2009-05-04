@@ -39,6 +39,7 @@ module Botbckt #:nodoc:
     #
     # ==== Parameters
     # command<Symbol>:: In-channel trigger for the command. Required.
+    # &block:: An optional block to execute, in lieu of call.
     #
     def self.trigger(command, &block)
       Botbckt::Bot.commands[command.to_sym] = block_given? ? block : self
