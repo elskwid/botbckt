@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{botbckt}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Mitchell"]
-  s.date = %q{2009-04-28}
+  s.date = %q{2009-05-04}
   s.description = %q{Boredom strikes on Sunday mornings.}
   s.email = %q{brandon@systemisdown.net}
   s.extra_rdoc_files = [
@@ -17,14 +17,17 @@ Gem::Specification.new do |s|
     "VERSION.yml",
     "lib/botbckt.rb",
     "lib/botbckt/bot.rb",
-    "lib/botbckt/commands.rb",
+    "lib/botbckt/command.rb",
     "lib/botbckt/commands/google.rb",
     "lib/botbckt/commands/meme.rb",
     "lib/botbckt/commands/ping.rb",
     "lib/botbckt/commands/remind.rb",
     "lib/botbckt/commands/snack.rb",
+    "lib/botbckt/commands/star_jar.rb",
     "lib/botbckt/commands/ticker.rb",
-    "lib/botbckt/irc.rb"
+    "lib/botbckt/commands/weather.rb",
+    "lib/botbckt/irc.rb",
+    "lib/botbckt/utilities.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/bitbckt/botbckt}
