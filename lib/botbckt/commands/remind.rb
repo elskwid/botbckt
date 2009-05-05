@@ -22,6 +22,7 @@ module Botbckt #:nodoc:
         msg, time = *absolute_reminder(reminder_string)
       else
         say Botbckt::Bot.befuddled, channel
+        return
       end
       
       if msg && time
