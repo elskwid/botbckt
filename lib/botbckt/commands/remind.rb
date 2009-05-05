@@ -7,6 +7,10 @@ module Botbckt #:nodoc:
   #  ... five minutes
   #  < botbckt> user: message
   #
+  #  < user> ~remind at 10:30 with message
+  #  ... at 10:30
+  #  < botbckt> user: message
+  #
   class Remind < Command
 
     SCALES = %w{ minute minutes second seconds hour hours }
