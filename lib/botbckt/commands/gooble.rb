@@ -19,8 +19,7 @@ module Botbckt #:nodoc:
   # < user> ~gooble -de Guten tag
   # < botbckt> Good day
   
-  class Gooble
-    extend Commands
+  class Gooble < Command
   
     MAIN_LANGUAGE       = "en"
     TRANSLATE_ATTEMPTS  = 4
@@ -70,7 +69,7 @@ module Botbckt #:nodoc:
         "Vietnamese"  => "vi"
       }
     
-    on :gooble do |sender, channel, gooble_string|
+    trigger :gooble do |sender, channel, gooble_string|
       # start with english unless asked for something else
       gooble_string =~ /(-\w{2}|--\w+)?(.*)/i
       option, text = $1, $2
