@@ -34,7 +34,7 @@ module Botbckt #:nodoc:
     
     private
 
-    def relative_reminder(str)
+    def relative_reminder(str) #:nodoc:
       # Somewhat faster than #match...
       str =~ /in (\d+) (\w+) with (.*)/i
       num, scale, msg = $1, $2, $3
@@ -47,7 +47,7 @@ module Botbckt #:nodoc:
       end
     end
     
-    def absolute_reminder(str)
+    def absolute_reminder(str) #:nodoc:
       # Somewhat faster than #match...
       str =~ /at (.*) with (.*)/i
       time, msg = $1, $2
