@@ -37,7 +37,7 @@ module Botbckt #:nodoc:
       daytime = (xml/'forecastday[1]')
       evening = (xml/'forecastday[2]')
       
-      "Conditions -\nToday: #{(daytime/'fcttext').inner_html}\nTonight: #{(evening/'fcttext').inner_html}"
+      "Today: #{(daytime/'fcttext').inner_html}\nTonight: #{(evening/'fcttext').inner_html}"
     end
     
     def self.forecast(query) #:nodoc:
