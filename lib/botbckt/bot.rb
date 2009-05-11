@@ -8,6 +8,8 @@ module Botbckt #:nodoc:
     
     AFFIRMATIVE = ["'Sea, mhuise.", "In Ordnung", "Ik begrijp", "Alles klar", "Ok.", "Roger.", "You don't have to tell me twice.", "Ack. Ack.", "C'est bon!"]
     NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me."]
+
+    attr_accessor :logger
     
     # ==== Parameters
     # options<Hash{Symbol => String,Integer}>
