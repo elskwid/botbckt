@@ -4,6 +4,7 @@ module Botbckt #:nodoc:
   #
   class Bot
     include Singleton
+    include ActiveSupport::BufferedLogger::Severity
     
     AFFIRMATIVE = ["'Sea, mhuise.", "In Ordnung", "Ik begrijp", "Alles klar", "Ok.", "Roger.", "You don't have to tell me twice.", "Ack. Ack.", "C'est bon!"]
     NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me."]
@@ -21,6 +22,10 @@ module Botbckt #:nodoc:
     # :log_level<Integer>:: The minimum severity level to log. Defaults to 1 (INFO).
     #
     def self.start(options)
+
+      self.instance.logger = ActiveSupport::BufferedLogger.new options.delete(:log) || 'botbckt.log',
+                                                               options.delete(:log_level) || INFO
+
       EventMachine::run do
         Botbckt::IRC.connect(options)
       end
@@ -92,6 +97,10 @@ module Botbckt #:nodoc:
     #
     def say(msg, channel)
       Botbckt::IRC.connection.say msg, channel
+    end
+
+    def self.log(msg, level = INFO) #:nodoc:
+      @logger.add(level, msg)
     end
     
   end

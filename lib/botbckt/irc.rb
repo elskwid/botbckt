@@ -4,7 +4,6 @@ module Botbckt #:nodoc:
   #
   class IRC < EventMachine::Connection
     include EventMachine::Protocols::LineText2
-    include ActiveSupport::BufferedLogger::Severity
     
     attr_accessor :config
     cattr_accessor :connection
@@ -20,8 +19,6 @@ module Botbckt #:nodoc:
     # :server<String>:: The FQDN of the IRC server. Required.
     # :port<~to_i>:: The port number of the IRC server. Required.
     # :channels<Array[String]>:: An array of channels to join. Channel names should *not* include the '#' prefix. Required.
-    # :log<String>:: The name of a log file. Defaults to 'botbckt.log'.
-    # :log_level<Integer>:: The minimum severity level to log. Defaults to 1 (INFO).
     #
     def self.connect(options)
       self.connection = EM.connect(options[:server], options[:port].to_i, self, options)
@@ -34,9 +31,6 @@ module Botbckt #:nodoc:
     #++
     def initialize(options) #:nodoc:
       self.config = OpenStruct.new(options)
-      
-      @logger = ActiveSupport::BufferedLogger.new self.config.log || 'botbckt.log',
-                                                  self.config.log_level || INFO
     end
     
     # ==== Parameters
@@ -81,8 +75,8 @@ module Botbckt #:nodoc:
     
     private
 
-    def log(msg, level = INFO) #:nodoc:
-      @logger.add(level, msg)
+    def log(msg, level) #:nodoc:
+      Botbckt::Bot.instance.log msg, level
     end
     
     def command(*cmd) #:nodoc:
