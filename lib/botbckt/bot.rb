@@ -11,6 +11,11 @@ module Botbckt #:nodoc:
 
     attr_accessor :logger
     
+    cattr_accessor :commands
+    cattr_accessor :store
+    @@commands = { }
+    @@store = nil
+    
     # ==== Parameters
     # options<Hash{Symbol => String,Integer}>
     #
@@ -24,11 +29,15 @@ module Botbckt #:nodoc:
     # :log_level<Integer>:: The minimum severity level to log. Defaults to 1 (INFO).
     # :pid<String>:: The name of a file to drop the PID. Defaults to 'botbckt.pid'.
     # :daemonize<Boolean>:: Fork and background the process. Defaults to true.
+    # :backend_host<String>:: The hostname of a Redis store. Optional.
+    # :backend_port<Integer>:: The port used by the Redis store. Optional.
     #
     def self.start(options)
 
       self.instance.logger = ActiveSupport::BufferedLogger.new options.delete(:log) || 'botbckt.log',
                                                                options.delete(:log_level) || INFO
+                                                               
+      host, port = options.delete(:backend_host), options.delete(:backend_port)
       daemonize = options.delete(:daemonize)
       pid = options.delete(:pid) || 'botbckt.pid'
 
@@ -36,10 +45,15 @@ module Botbckt #:nodoc:
         EventMachine::fork_reactor do
           Botbckt::IRC.connect(options)
           
+          if host && port
+             self.store = Store.new(host, port)
+           end
+          
           if pid
             File.open(pid, 'w'){ |f| f.write("#{Process.pid}") }
             at_exit { File.delete(pid) if File.exist?(pid) }
           end
+          
         end
       else
         EventMachine::run do
@@ -63,6 +77,27 @@ module Botbckt #:nodoc:
     #
     def commands
       @commands
+    end
+    
+    #--
+    # TODO: Forwardable?
+    #++
+    def self.set(key, value)
+      self.store && self.store.set(key, value)
+    end
+    
+    #--
+    # TODO: Forwardable?
+    #++
+    def self.get(key)
+      self.store && self.store.get(key)
+    end
+    
+    #--
+    # TODO: Forwardable?
+    #++
+    def self.increment!(key)
+      self.store && self.store.increment!(key)
     end
 
     # ==== Parameters
