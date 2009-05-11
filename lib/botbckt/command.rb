@@ -41,7 +41,7 @@ module Botbckt #:nodoc:
     # &block:: An optional block to execute, in lieu of call.
     #
     def self.trigger(command, &block)
-      Botbckt::Bot.instance.commands[command.to_sym] = block_given? ? block : self
+      Botbckt::Bot.instance.register(command, block_given? ? block : self)
     end
     
     # ==== Parameters

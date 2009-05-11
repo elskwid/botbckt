@@ -8,9 +8,6 @@ module Botbckt #:nodoc:
     AFFIRMATIVE = ["'Sea, mhuise.", "In Ordnung", "Ik begrijp", "Alles klar", "Ok.", "Roger.", "You don't have to tell me twice.", "Ack. Ack.", "C'est bon!"]
     NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me."]
     
-    attr_accessor :commands
-    @commands = { }
-
     # ==== Parameters
     # options<Hash{Symbol => String,Integer}>
     #
@@ -29,6 +26,15 @@ module Botbckt #:nodoc:
       end
     end
     
+    def register(command, callable)
+      @commands ||= { }
+      @commands[command.to_sym] = callable
+    end
+
+    def commands
+      @commands
+    end
+
     # ==== Parameters
     # command<Symbol>:: The name of a registered command to run. Required.
     # sender<String>:: The sender (incl. hostmask) of the trigger. Required.
