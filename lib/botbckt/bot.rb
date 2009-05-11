@@ -3,13 +3,14 @@ module Botbckt #:nodoc:
   # Create a new IRC bot. See Bot.start to get started.
   #
   class Bot
+    include Singleton
     
     AFFIRMATIVE = ["'Sea, mhuise.", "In Ordnung", "Ik begrijp", "Alles klar", "Ok.", "Roger.", "You don't have to tell me twice.", "Ack. Ack.", "C'est bon!"]
     NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me."]
     
-    cattr_accessor :commands
-    @@commands = { }
-    
+    attr_accessor :commands
+    @commands = { }
+
     # ==== Parameters
     # options<Hash{Symbol => String,Integer}>
     #
@@ -37,8 +38,8 @@ module Botbckt #:nodoc:
     #--
     # TODO: Before/after callbacks?
     #++
-    def self.run(command, sender, channel, *args)
-      callable = self.commands[command.to_sym]
+    def run(command, sender, channel, *args)
+      callable = commands[command.to_sym]
       
       if callable.is_a?(Class)
         # Callables are Singletons; we use #create! as a convention to give
@@ -57,7 +58,7 @@ module Botbckt #:nodoc:
     #--
     # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
     #++
-    def self.ok
+    def ok
       AFFIRMATIVE[rand(AFFIRMATIVE.size)]
     end
     
@@ -67,7 +68,7 @@ module Botbckt #:nodoc:
     #--
     # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
     #++
-    def self.befuddled
+    def befuddled
       NEGATIVE[rand(NEGATIVE.size)]
     end
     
@@ -75,7 +76,7 @@ module Botbckt #:nodoc:
     # msg<String>:: A message to send to the channel
     # channel<String>:: The channel to send the message. Required.
     #
-    def self.say(msg, channel)
+    def say(msg, channel)
       Botbckt::IRC.connection.say msg, channel
     end
     

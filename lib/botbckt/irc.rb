@@ -66,7 +66,7 @@ module Botbckt #:nodoc:
         args << $5.squish if $5
         
          # run args: command, sender, channel, optional args
-        Botbckt::Bot.run($4, *args)
+        Botbckt::Bot.instance.run($4, *args)
       else
         log line
       end

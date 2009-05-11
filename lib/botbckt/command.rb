@@ -1,5 +1,3 @@
-require 'singleton'
-
 module Botbckt #:nodoc:
   
   # This acts as a kind of abstract class for Botbckt commands. Subclass
@@ -43,7 +41,7 @@ module Botbckt #:nodoc:
     # &block:: An optional block to execute, in lieu of call.
     #
     def self.trigger(command, &block)
-      Botbckt::Bot.commands[command.to_sym] = block_given? ? block : self
+      Botbckt::Bot.instance.commands[command.to_sym] = block_given? ? block : self
     end
     
     # ==== Parameters
@@ -51,7 +49,7 @@ module Botbckt #:nodoc:
     # channel<String>:: The channel to send the message. Required.
     #
     def self.say(msg, channel)
-      Botbckt::Bot.say(msg, channel) if msg
+      Botbckt::Bot.instance.say(msg, channel) if msg
     end
     
     # Proxy for Command.say
