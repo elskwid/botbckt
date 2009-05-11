@@ -26,11 +26,19 @@ module Botbckt #:nodoc:
       end
     end
     
+    # Registers a new command.
+    #
+    # ==== Parameters
+    # command<~to_sym>:: Trigger to register. Required.
+    # callable<~call>:: Callback or class with #call to execute. Required.
+    #
     def register(command, callable)
       @commands ||= { }
       @commands[command.to_sym] = callable
     end
 
+    # Returns currently registered commands.
+    #
     def commands
       @commands
     end
@@ -64,7 +72,7 @@ module Botbckt #:nodoc:
     #--
     # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
     #++
-    def ok
+    def self.ok
       AFFIRMATIVE[rand(AFFIRMATIVE.size)]
     end
     
@@ -74,7 +82,7 @@ module Botbckt #:nodoc:
     #--
     # Inspired by Clojurebot: http://github.com/hiredman/clojurebot
     #++
-    def befuddled
+    def self.befuddled
       NEGATIVE[rand(NEGATIVE.size)]
     end
     
