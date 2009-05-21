@@ -30,6 +30,8 @@ module Botbckt #:nodoc:
     
     # ==== Parameters
     # command<Symbol>:: The name of a registered command to run. Required.
+    # sender<String>:: The sender (incl. hostmask) of the trigger. Required.
+    # channel<String>:: The channel on which the command was triggered. Required.
     # *args:: Arguments to be passed to the command. Optional.
     #
     #--

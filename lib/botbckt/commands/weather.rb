@@ -6,7 +6,6 @@ module Botbckt #:nodoc:
   #  < botbckt> Today's Forecast: 90F/65F (Sunny)
   #
   #  < user> ~conditions Los Angeles, CA
-  #  < botbckt> Conditions -
   #  < botbckt> Today: Areas of low clouds in the morning then mostly sunny. Highs in the upper 60s to mid 70s. West winds 10 to 20 mph in the afternoon.
   #  < botbckt> Tonight: Mostly clear. Lows in the mid to upper 50s. West winds 10 to 20 mph in the evening.
   #
@@ -37,7 +36,7 @@ module Botbckt #:nodoc:
       daytime = (xml/'forecastday[1]')
       evening = (xml/'forecastday[2]')
       
-      "Conditions -\nToday: #{(daytime/'fcttext').inner_html}\nTonight: #{(evening/'fcttext').inner_html}"
+      "Today: #{(daytime/'fcttext').inner_html}\nTonight: #{(evening/'fcttext').inner_html}"
     end
     
     def self.forecast(query) #:nodoc:

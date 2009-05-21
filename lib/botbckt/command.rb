@@ -2,10 +2,11 @@ require 'singleton'
 
 module Botbckt #:nodoc:
   
-  # This acts as a kind of abstract class for Botbckt commands. Extend your
-  # command class with this module to define new bot commands.
+  # This acts as a kind of abstract class for Botbckt commands. Subclass
+  # this class to define new bot commands.
   #
-  # Command subclasses must (re-)define initialize and call.
+  # Command subclasses must (re-)define call. If any setup is needed, override
+  # create! and return self.instance.
   #
   class Command
     include Utilities
@@ -39,6 +40,7 @@ module Botbckt #:nodoc:
     #
     # ==== Parameters
     # command<Symbol>:: In-channel trigger for the command. Required.
+    # &block:: An optional block to execute, in lieu of call.
     #
     def self.trigger(command, &block)
       Botbckt::Bot.commands[command.to_sym] = block_given? ? block : self

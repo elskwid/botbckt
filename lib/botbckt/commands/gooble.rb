@@ -6,21 +6,20 @@ module Botbckt #:nodoc:
   # an option is present it is used as the starting language.
   # 
   #
-  # < user> ~gooble We the People of the United States, in Order to form a more perfect Union
-  # < botbckt> Popular in the United States to create the completed
+  #  < user> ~gooble We the People of the United States, in Order to form a more perfect Union
+  #  < botbckt> Popular in the United States to create the completed
   #
   # With language option:
   # 
-  # < user> ~gooble --german Guten tag
-  # < botbckt> Good day
+  #  < user> ~gooble --german Guten tag
+  #  < botbckt> Good day
   #
   # or the short version
   #
-  # < user> ~gooble -de Guten tag
-  # < botbckt> Good day
+  #  < user> ~gooble -de Guten tag
+  #  < botbckt> Good day
   
-  class Gooble
-    extend Commands
+  class Gooble < Command
   
     MAIN_LANGUAGE       = "en"
     TRANSLATE_ATTEMPTS  = 4
@@ -70,7 +69,7 @@ module Botbckt #:nodoc:
         "Vietnamese"  => "vi"
       }
     
-    on :gooble do |sender, channel, gooble_string|
+    trigger :gooble do |sender, channel, gooble_string|
       # start with english unless asked for something else
       gooble_string =~ /(-\w{2}|--\w+)?(.*)/i
       option, text = $1, $2
