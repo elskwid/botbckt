@@ -101,8 +101,8 @@ module Botbckt #:nodoc:
       Botbckt::IRC.connection.say msg, channel
     end
 
-    def self.log(msg, level = INFO) #:nodoc:
-      @logger.add(level, msg)
+    def log(msg, level = INFO) #:nodoc:
+      self.logger.add(level, msg)
     end
     
   end
