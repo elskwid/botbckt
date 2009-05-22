@@ -68,10 +68,10 @@ module Botbckt #:nodoc:
         callable = callable.create!(sender, channel, *args)
       end
       
-      callable.respond_to?(:call) ? callable.call(sender, channel, *args) : say(befuddled, channel)
+      callable.respond_to?(:call) ? callable.call(sender, channel, *args) : say(Bot.befuddled, channel)
     # TODO: Log me.
     rescue StandardError => e
-      say befuddled, channel
+      say Bot.befuddled, channel
     end
     
     # Returns a random "affirmative" message. Use to acknowledge user input.
