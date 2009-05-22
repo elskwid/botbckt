@@ -75,7 +75,7 @@ module Botbckt #:nodoc:
     
     private
 
-    def log(msg, level) #:nodoc:
+    def log(msg, level = Botbckt::Bot::INFO) #:nodoc:
       Botbckt::Bot.instance.log msg, level
     end
     
