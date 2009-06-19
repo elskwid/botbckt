@@ -56,6 +56,10 @@ module Botbckt #:nodoc:
           options[:daemonize] = daemon
         end
         
+        opts.on('-P', '--pid FILE', 'File to store PID (default: botbckt.pid)') do |file|
+          options[:pid] = file
+        end
+        
         opts.on_tail('-h', '--help', 'Show this message.') do |help|
           puts opts
           exit

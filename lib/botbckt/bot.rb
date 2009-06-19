@@ -22,6 +22,7 @@ module Botbckt #:nodoc:
     # :channels<Array[String]>:: An array of channels to join. Channel names should *not* include the '#' prefix. Required.
     # :log<String>:: The name of a log file. Defaults to 'botbckt.log'.
     # :log_level<Integer>:: The minimum severity level to log. Defaults to 1 (INFO).
+    # :pid<String>:: The name of a file to drop the PID. Defaults to 'botbckt.pid'.
     # :daemonize<Boolean>:: Fork and background the process. Defaults to true.
     #
     def self.start(options)
@@ -29,10 +30,16 @@ module Botbckt #:nodoc:
       self.instance.logger = ActiveSupport::BufferedLogger.new options.delete(:log) || 'botbckt.log',
                                                                options.delete(:log_level) || INFO
       daemonize = options.delete(:daemonize)
+      pid = options.delete(:pid) || 'botbckt.pid'
 
       if daemonize || daemonize.nil?
         EventMachine::fork_reactor do
           Botbckt::IRC.connect(options)
+          
+          if pid
+            File.open(pid, 'w'){ |f| f.write("#{Process.pid}") }
+            at_exit { File.delete(pid) if File.exist?(pid) }
+          end
         end
       else
         EventMachine::run do
