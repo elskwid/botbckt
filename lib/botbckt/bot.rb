@@ -22,14 +22,22 @@ module Botbckt #:nodoc:
     # :channels<Array[String]>:: An array of channels to join. Channel names should *not* include the '#' prefix. Required.
     # :log<String>:: The name of a log file. Defaults to 'botbckt.log'.
     # :log_level<Integer>:: The minimum severity level to log. Defaults to 1 (INFO).
+    # :daemonize<Boolean>:: Fork and background the process. Defaults to true.
     #
     def self.start(options)
 
       self.instance.logger = ActiveSupport::BufferedLogger.new options.delete(:log) || 'botbckt.log',
                                                                options.delete(:log_level) || INFO
+      daemonize = options.delete(:daemonize)
 
-      EventMachine::run do
-        Botbckt::IRC.connect(options)
+      if daemonize || daemonize.nil?
+        EventMachine::fork_reactor do
+          Botbckt::IRC.connect(options)
+        end
+      else
+        EventMachine::run do
+          Botbckt::IRC.connect(options)
+        end
       end
     end
     
