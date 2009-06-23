@@ -15,22 +15,16 @@ module Botbckt #:nodoc:
       self.backend = EventMachine::Protocols::Redis.connect(host, port)
     end
     
-    def set(key, value)
-      backend.set(key, value) do |response|
-        response
-      end
+    def set(key, value, &block)
+      backend.set(key, value, &block)
     end
     
-    def get(key)
-      backend.get(key) do |response|
-        response
-      end
+    def get(key, &block)
+      backend.get(key, &block)
     end
     
-    def increment!(key)
-      backend.incr(key) do |response|
-        response
-      end
+    def increment!(key, &block)
+      backend.incr(key, &block)
     end
     
   end

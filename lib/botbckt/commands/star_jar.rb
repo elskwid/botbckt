@@ -19,8 +19,8 @@ module Botbckt #:nodoc:
     # ==== Parameters
     # user<String>:: The user receiving a star. Required.
     #
-    def push(user)
-      increment! "starjar-#{user}"
+    def push(user, &block)
+      increment! "starjar-#{user}", &block
     end
     
     # Removes a star from the jar for the user
@@ -28,21 +28,23 @@ module Botbckt #:nodoc:
     # ==== Parameters
     # user<String>:: The user being docked a star. Required.
     #
-    def pop(user)
-      stars = get "starjar-#{user}"
+    def pop(user, &block)
+      get "starjar-#{user}" do |stars|
       
-      if stars
-        set "starjar-#{user}", stars - 1
-      else
-        set "starjar-#{user}", 0
+        if stars
+          set "starjar-#{user}", stars - 1, &block
+        else
+          set "starjar-#{user}", 0, &block
+        end
       end
     end
    
     def call(giver, channel, receiver)
       receiver.split(' ').each do |rcv|
         if rcv != freenode_split(giver).first
-          total = push(rcv)
-          say "#{rcv}: Gold star for you! (#{total})", channel
+          push(rcv) do |total|
+            say "#{rcv}: Gold star for you! (#{total})", channel
+          end
         else
           say "#{rcv}: No star for you!", channel
         end

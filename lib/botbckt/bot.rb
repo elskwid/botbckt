@@ -78,22 +78,22 @@ module Botbckt #:nodoc:
     #--
     # TODO: Forwardable?
     #++
-    def set(key, value)
-      self.store && self.store.set(key, value)
+    def set(key, value, &block)
+      self.store && self.store.set(key, value, &block)
     end
     
     #--
     # TODO: Forwardable?
     #++
-    def get(key)
-      self.store && self.store.get(key)
+    def get(key, &block)
+      self.store && self.store.get(key, &block)
     end
     
     #--
     # TODO: Forwardable?
     #++
-    def increment!(key)
-      self.store && self.store.increment!(key)
+    def increment!(key, &block)
+      self.store && self.store.increment!(key, &block)
     end
 
     # ==== Parameters
