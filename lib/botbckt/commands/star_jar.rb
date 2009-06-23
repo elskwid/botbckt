@@ -13,13 +13,6 @@ module Botbckt #:nodoc:
   class StarJar < Command
    
     trigger :star
-
-    attr_accessor :jar
-
-    def self.create!(*args) #:nodoc:
-      self.instance.jar ||= { }
-      self.instance
-    end
    
     # Adds a star to the jar for the user
     #
@@ -27,8 +20,7 @@ module Botbckt #:nodoc:
     # user<String>:: The user receiving a star. Required.
     #
     def push(user)
-      @jar[user] ||= 0
-      @jar[user] += 1
+      increment! "starjar-#{user}"
     end
     
     # Removes a star from the jar for the user
@@ -37,12 +29,12 @@ module Botbckt #:nodoc:
     # user<String>:: The user being docked a star. Required.
     #
     def pop(user)
-      @jar[user] ||= 0
+      stars = get "starjar-#{user}"
       
-      if @jar[user] == 0
-        return 0
+      if stars
+        set "starjar-#{user}", stars - 1
       else
-        @jar[user] -= 1
+        set "starjar-#{user}", 0
       end
     end
    
