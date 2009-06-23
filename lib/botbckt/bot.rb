@@ -11,9 +11,7 @@ module Botbckt #:nodoc:
 
     attr_accessor :logger
     
-    cattr_accessor :commands
     cattr_accessor :store
-    @@commands = { }
     @@store = nil
     
     # ==== Parameters
