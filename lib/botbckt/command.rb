@@ -58,6 +58,18 @@ module Botbckt #:nodoc:
       self.class.say(msg, channel)
     end
     
+    def set(key, value)
+      Botbckt::Bot.instance.set(key, value)
+    end
+    
+    def get(key)
+      Botbckt::Bot.instance.get(key)
+    end
+    
+    def increment!(key)
+      Botbckt::Bot.instance.increment!(key)
+    end
+    
   end
   
 end
