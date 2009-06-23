@@ -10,9 +10,7 @@ module Botbckt #:nodoc:
     NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me."]
 
     attr_accessor :logger
-    
-    cattr_accessor :store
-    @@store = nil
+    attr_accessor :store
     
     # ==== Parameters
     # options<Hash{Symbol => String,Integer}>
@@ -44,7 +42,7 @@ module Botbckt #:nodoc:
           Botbckt::IRC.connect(options)
           
           if host && port
-             self.store = Store.new(host, port)
+             self.instance.store = Store.new(host, port)
            end
           
           if pid
@@ -80,21 +78,21 @@ module Botbckt #:nodoc:
     #--
     # TODO: Forwardable?
     #++
-    def self.set(key, value)
+    def set(key, value)
       self.store && self.store.set(key, value)
     end
     
     #--
     # TODO: Forwardable?
     #++
-    def self.get(key)
+    def get(key)
       self.store && self.store.get(key)
     end
     
     #--
     # TODO: Forwardable?
     #++
-    def self.increment!(key)
+    def increment!(key)
       self.store && self.store.increment!(key)
     end
 
