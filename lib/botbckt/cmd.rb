@@ -14,6 +14,7 @@ module Botbckt #:nodoc:
       options[:user] = 'botbckt'
       options[:port] = 6667
       options[:channels] = []
+      options[:backend_port] = 6379
       
       opts = OptionParser.new do |opts|
         opts.banner = 'Usage: botbckt [options]'
@@ -51,7 +52,15 @@ module Botbckt #:nodoc:
                 "Minimum severity level to log.Accepted values are: #{severities}. (default: INFO)") do |level|
           options[:log_level] = level
         end
-      
+        
+        opts.on('-b', '--backend-host [SERVER]', 'Address of a Redis server.') do |backend|
+          options[:backend_host] = backend
+        end
+        
+        opts.on('-B', '--backend-port [PORT]', Integer, 'Port of a Redis server. (default: 6379)') do |port|
+          options[:backend_port] = port
+        end
+        
         opts.on('-D', '--[no-]daemonize', 'Fork and run in the background. (default: true)') do |daemon|
           options[:daemonize] = daemon
         end
