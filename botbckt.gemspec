@@ -2,22 +2,27 @@
 
 Gem::Specification.new do |s|
   s.name = %q{botbckt}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Mitchell"]
-  s.date = %q{2009-05-04}
+  s.date = %q{2009-06-23}
+  s.default_executable = %q{botbckt}
   s.description = %q{Boredom strikes on Sunday mornings.}
   s.email = %q{brandon@systemisdown.net}
+  s.executables = ["botbckt"]
   s.extra_rdoc_files = [
     "README"
   ]
   s.files = [
     "Rakefile",
     "VERSION.yml",
+    "bin/botbckt",
     "lib/botbckt.rb",
     "lib/botbckt/bot.rb",
+    "lib/botbckt/cmd.rb",
     "lib/botbckt/command.rb",
+    "lib/botbckt/commands/gooble.rb",
     "lib/botbckt/commands/google.rb",
     "lib/botbckt/commands/meme.rb",
     "lib/botbckt/commands/ping.rb",
@@ -27,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/botbckt/commands/ticker.rb",
     "lib/botbckt/commands/weather.rb",
     "lib/botbckt/irc.rb",
+    "lib/botbckt/store.rb",
     "lib/botbckt/utilities.rb"
   ]
   s.has_rdoc = true
