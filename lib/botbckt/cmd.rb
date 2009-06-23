@@ -33,7 +33,7 @@ module Botbckt #:nodoc:
           options[:server] = server
         end
         
-        opts.on('-p', '--port [PORT]', Integer, 'Port of the IRC server. (default: 6667)') do |port|
+        opts.on('-P', '--port [PORT]', Integer, 'Port of the IRC server. (default: 6667)') do |port|
           options[:port] = port
         end
         
@@ -56,7 +56,7 @@ module Botbckt #:nodoc:
           options[:daemonize] = daemon
         end
         
-        opts.on('-P', '--pid FILE', 'File to store PID (default: botbckt.pid)') do |file|
+        opts.on('-i', '--pid FILE', 'File to store PID (default: botbckt.pid)') do |file|
           options[:pid] = file
         end
         
