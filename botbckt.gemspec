@@ -2,15 +2,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{botbckt}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Mitchell"]
-  s.date = %q{2009-06-23}
-  s.default_executable = %q{botbckt}
+  s.date = %q{2009-06-24}
   s.description = %q{Boredom strikes on Sunday mornings.}
   s.email = %q{brandon@systemisdown.net}
-  s.executables = ["botbckt"]
+  s.executables = ["botbckt", "botbckt"]
   s.extra_rdoc_files = [
     "README"
   ]
@@ -47,8 +46,20 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<eventmachine>, [">= 0.12.0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_runtime_dependency(%q<json>, [">= 1.1.2"])
+      s.add_runtime_dependency(%q<hpricot>, [">= 0.6"])
     else
+      s.add_dependency(%q<eventmachine>, [">= 0.12.0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
+      s.add_dependency(%q<json>, [">= 1.1.2"])
+      s.add_dependency(%q<hpricot>, [">= 0.6"])
     end
   else
+    s.add_dependency(%q<eventmachine>, [">= 0.12.0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
+    s.add_dependency(%q<json>, [">= 1.1.2"])
+    s.add_dependency(%q<hpricot>, [">= 0.6"])
   end
 end
