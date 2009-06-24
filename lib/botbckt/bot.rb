@@ -119,7 +119,7 @@ module Botbckt #:nodoc:
     # TODO: Before/after callbacks?
     #++
     def run(command, sender, channel, *args)
-      callable = commands[command.to_sym]
+      callable = commands[command.to_sym] || raise("Unregistered command called. (#{command})")
       
       if callable.is_a?(Class)
         # Callables are Singletons; we use #create! as a convention to give
