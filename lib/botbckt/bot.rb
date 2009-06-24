@@ -158,14 +158,18 @@ module Botbckt #:nodoc:
     end
     
     # ==== Parameters
-    # msg<String>:: A message to send to the channel
+    # msg<String>:: A message to send to the channel. Required.
     # channel<String>:: The channel to send the message. Required.
     #
     def say(msg, channel)
       self.connection.say msg, channel
     end
 
-    def log(msg, level = INFO) #:nodoc:
+    # ==== Parameters
+    # msg<String>:: A message to log. Required.
+    # level<Integer>:: The minimum log level at which to log this message. Defaults to INFO.
+    #
+    def log(msg, level = INFO)
       self.logger.add(level, msg)
     end
     
