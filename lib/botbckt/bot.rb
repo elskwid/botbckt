@@ -35,7 +35,7 @@ module Botbckt #:nodoc:
 
       if daemonize || daemonize.nil?
         EventMachine::fork_reactor do
-          start!
+          start! options
           
           if pid
             File.open(pid, 'w') { |file| file.write("#{Process.pid}") }
@@ -44,7 +44,7 @@ module Botbckt #:nodoc:
           
         end
       else
-        EventMachine::run { start! }
+        EventMachine::run { start! options }
       end
     end
     
