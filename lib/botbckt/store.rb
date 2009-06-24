@@ -1,5 +1,3 @@
-require 'em-redis'
-
 module Botbckt #:nodoc:
   
   # Implements a basic key/value store API for cross-session state storage.
