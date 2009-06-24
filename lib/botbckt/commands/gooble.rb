@@ -89,8 +89,9 @@ module Botbckt #:nodoc:
       languages << LANGUAGES.values.sort_by{ rand }.slice(0...TRANSLATE_ATTEMPTS)
       languages << MAIN_LANGUAGE # always end with main 
       
-      result = gooble(text, languages.flatten)
-      say result, channel
+      gooble(text, languages.flatten) do |result|
+        say result, channel
+      end
     end
   
     private
@@ -98,15 +99,16 @@ module Botbckt #:nodoc:
     # args
     # text<String>: text to translate
     # langs<Array>: languages to translate from/to
-    def self.gooble(text, languages) #:nodoc:
+    def self.gooble(text, languages, &block) #:nodoc:
       if languages.length >= 2
         pair     = "#{languages[0]}|#{languages[1]}"
-        json     = open("http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{CGI.escape(text)}&langpair=#{CGI.escape(pair)}")
-        response = JSON.parse(json.read) # could check for failed response with response['responseStatus'] != 200 
-        languages.shift
-        gooble(response['responseData']['translatedText'], languages)
+        open("http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{CGI.escape(text)}&langpair=#{CGI.escape(pair)}") do |json|
+          response = JSON.parse(json) # could check for failed response with response['responseStatus'] != 200 
+          languages.shift
+          gooble(response['responseData']['translatedText'], languages)
+        end
       else
-        text
+        yield text
       end
     end
 
