@@ -1,6 +1,6 @@
 module Botbckt #:nodoc:
   
-  class Cmd
+  class Cmd #:nodoc:
     
     SEVERITY = %w{0 1 2 3 4 5}
     SEVERITY_ALIASES = { "DEBUG" => 0, "INFO" => 1, "WARN" => 2, "ERROR" => 3, "FATAL" => 4, "UNKNOWN" => 5}

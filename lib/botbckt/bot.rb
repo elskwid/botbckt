@@ -75,6 +75,14 @@ module Botbckt #:nodoc:
       @commands
     end
     
+    # Sets the key to the given value, creating the key if necessary.
+    #
+    # ==== Parameters
+    # key<String>:: The identifier for this value. Required.
+    # value<Object>:: The value to store at the key. Required.
+    # &block:: A callback to execute after the value is stored. The block should
+    #          take a single parameter: the value stored. Optional.
+    #
     #--
     # TODO: Forwardable?
     #++
@@ -82,6 +90,13 @@ module Botbckt #:nodoc:
       self.store && self.store.set(key, value, &block)
     end
     
+    # Retrieves the value stored at key. Returns nil if the key does not exist.
+    #
+    # ==== Parameters
+    # key<String>:: The identifier to retrieve. Required.
+    # &block:: A callback to execute after the value is retrieved. The block should
+    #          take a single parameter: the value retrieved. Required.
+    #
     #--
     # TODO: Forwardable?
     #++
@@ -89,6 +104,14 @@ module Botbckt #:nodoc:
       self.store && self.store.get(key, &block)
     end
     
+    # Increments the value stored at key by 1, creating the key and initializing
+    # it to 0 if necessary.
+    #
+    # ==== Parameters
+    # key<String>:: The identifier whose value should be incremented. Required.
+    # &block:: A callback to execute after the value is stored. The block should
+    #          take a single parameter: the value stored. Optional.
+    #
     #--
     # TODO: Forwardable?
     #++
