@@ -60,7 +60,7 @@ module Botbckt #:nodoc:
         args << $5.squish if $5
         
          # run args: command, sender, channel, optional args
-        Botbckt::Bot.instance.run($4, *args)
+        self.config.bot.run($4, *args)
       else
         log line
       end
@@ -76,7 +76,7 @@ module Botbckt #:nodoc:
     private
 
     def log(msg, level = Botbckt::Bot::INFO) #:nodoc:
-      Botbckt::Bot.instance.log msg, level
+      self.config.bot.log msg, level
     end
     
     def command(*cmd) #:nodoc:

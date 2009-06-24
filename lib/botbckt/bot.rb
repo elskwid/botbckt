@@ -11,6 +11,7 @@ module Botbckt #:nodoc:
 
     attr_accessor :logger
     attr_accessor :store
+    attr_accessor :connection
     
     # ==== Parameters
     # options<Hash{Symbol => String,Integer}>
@@ -29,32 +30,21 @@ module Botbckt #:nodoc:
     # :backend_port<Integer>:: The port used by the Redis store. Optional.
     #
     def self.start(options)
-
-      self.instance.logger = ActiveSupport::BufferedLogger.new options.delete(:log) || 'botbckt.log',
-                                                               options.delete(:log_level) || INFO
-                                                               
-      host, port = options.delete(:backend_host), options.delete(:backend_port)
       daemonize = options.delete(:daemonize)
       pid = options.delete(:pid) || 'botbckt.pid'
 
       if daemonize || daemonize.nil?
         EventMachine::fork_reactor do
-          Botbckt::IRC.connect(options)
-          
-          if host && port
-             self.instance.store = Store.new(host, port)
-           end
+          start!
           
           if pid
-            File.open(pid, 'w'){ |f| f.write("#{Process.pid}") }
+            File.open(pid, 'w') { |file| file.write("#{Process.pid}") }
             at_exit { File.delete(pid) if File.exist?(pid) }
           end
           
         end
       else
-        EventMachine::run do
-          Botbckt::IRC.connect(options)
-        end
+        EventMachine::run { start! }
       end
     end
     
@@ -137,9 +127,14 @@ module Botbckt #:nodoc:
         callable = callable.create!(sender, channel, *args)
       end
       
-      callable.respond_to?(:call) ? callable.call(sender, channel, *args) : say(Bot.befuddled, channel)
+      if callable.respond_to?(:call)
+        callable.call(sender, channel, *args)
+      else
+        raise("Non-callable used as command. (#{command})")
+      end
+
     # TODO: Log me.
-    rescue StandardError => e
+    rescue StandardError => error
       say Bot.befuddled, channel
     end
     
@@ -167,11 +162,26 @@ module Botbckt #:nodoc:
     # channel<String>:: The channel to send the message. Required.
     #
     def say(msg, channel)
-      Botbckt::IRC.connection.say msg, channel
+      self.connection.say msg, channel
     end
 
     def log(msg, level = INFO) #:nodoc:
       self.logger.add(level, msg)
+    end
+    
+    private
+    
+    def self.start!(options) #:nodoc:
+      self.instance.logger = ActiveSupport::BufferedLogger.new options.delete(:log) || 'botbckt.log',
+                                                               options.delete(:log_level) || INFO
+                                                               
+      host, port = options.delete(:backend_host), options.delete(:backend_port)
+      
+      if host && port
+        self.instance.store = Store.new(host, port)
+      end
+      
+      self.instance.connection = Botbckt::IRC.connect(options.merge(:bot => self.instance))   
     end
     
   end

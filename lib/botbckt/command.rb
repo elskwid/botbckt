@@ -49,7 +49,7 @@ module Botbckt #:nodoc:
     # channel<String>:: The channel to send the message. Required.
     #
     def self.say(msg, channel)
-      Botbckt::Bot.instance.say(msg, channel) if msg
+      Botbckt::Bot.instance.say(msg, channel)
     end
     
     # Proxy for Command.say
