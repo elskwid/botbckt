@@ -133,8 +133,8 @@ module Botbckt #:nodoc:
         raise("Non-callable used as command. (#{command})")
       end
 
-    # TODO: Log me.
     rescue StandardError => error
+      log "ERROR:\n#{error.inspect}\n#{error.backtrace}", DEBUG
       say Bot.befuddled, channel
     end
     
