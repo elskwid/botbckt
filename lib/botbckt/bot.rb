@@ -6,8 +6,8 @@ module Botbckt #:nodoc:
     include Singleton
     include ActiveSupport::BufferedLogger::Severity
     
-    AFFIRMATIVE = ["'Sea, mhuise.", "In Ordnung", "Ik begrijp", "Alles klar", "Ok.", "Roger.", "You don't have to tell me twice.", "Ack. Ack.", "C'est bon!"]
-    NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me."]
+    AFFIRMATIVE = ["'Sea, mhuise.", "In Ordnung", "Ik begrijp het", "Alles klar", "Ok.", "Roger.", "You don't have to tell me twice.", "Ack. Ack.", "C'est bon!"]
+    NEGATIVE    = ["Titim gan éirí ort.", "Gabh mo leithscéal?", "No entiendo", "excusez-moi", "Excuse me?", "Huh?", "I don't understand.", "Pardon?", "It's greek to me.", "Wat zeg je me nou?"]
 
     attr_accessor :logger
     attr_accessor :store
