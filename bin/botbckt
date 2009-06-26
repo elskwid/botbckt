@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'pathname'
+  local_lib = Pathname.new(__FILE__).expand_path.dirname.join('..', 'lib', 'botbckt.rb')
+  if local_lib.file?
+    require local_lib
+  else
+    require 'botbckt'
+  end
+rescue LoadError
+  require 'rubygems'
+  require 'botbckt'
+end
+
+Botbckt::Cmd.run(ARGV)

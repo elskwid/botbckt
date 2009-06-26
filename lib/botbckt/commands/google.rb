@@ -14,22 +14,24 @@ module Botbckt #:nodoc:
     trigger :google
     
     def call(sender, channel, query)
-      result = google(query)
-      say "First out of #{result.first} results:", channel
-      say result.last['titleNoFormatting'], channel
-      say result.last['unescapedUrl'], channel
+      google(query) do |result|
+        say "First out of #{result.first} results:", channel
+        say result.last['titleNoFormatting'], channel
+        say result.last['unescapedUrl'], channel
+      end
     end
   
     private
   
-    def google(term) #:nodoc:
-      json     = open("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=#{CGI.escape(term)}")
-      response = JSON.parse(json.read)
+    def google(term, &block) #:nodoc:
+      open("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=#{CGI.escape(term)}") do |json|
+        response = JSON.parse(json)
 
-      [
-        response['responseData']['cursor']['estimatedResultCount'],
-        response['responseData']['results'].first
-      ]
+        yield [
+          response['responseData']['cursor']['estimatedResultCount'],
+          response['responseData']['results'].first
+        ]
+      end
     end
 
   end

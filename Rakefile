@@ -15,6 +15,13 @@ begin
     g.homepage    = 'http://github.com/bitbckt/botbckt'
     g.description = 'Boredom strikes on Sunday mornings.'
     g.authors     = ['Brandon Mitchell']
+    g.executables << 'botbckt'
+    g.add_dependency('eventmachine', '>= 0.12.0')
+    g.add_dependency('activesupport')
+    g.add_dependency('json', '>= 1.1.2')
+    g.add_dependency('hpricot', '>= 0.6')
+    g.add_dependency('em-redis', '>= 0.1.1')
+    g.add_dependency('em-http', '>= 0.1.6')
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"

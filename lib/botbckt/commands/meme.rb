@@ -10,13 +10,17 @@ module Botbckt #:nodoc:
     trigger :meme
 
     def call(sender, channel, *args)
-      say meme, channel
+      meme do |msg|
+        say msg, channel
+      end
     end
    
    private
    
-   def meme #:nodoc:
-     open("http://meme.boxofjunk.ws/moar.txt?lines=1").read.chomp
+   def meme(&block) #:nodoc:
+     open("http://meme.boxofjunk.ws/moar.txt?lines=1") do |response|
+       yield response.chomp
+     end
    end
     
   end

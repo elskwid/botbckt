@@ -13,22 +13,14 @@ module Botbckt #:nodoc:
   class StarJar < Command
    
     trigger :star
-
-    attr_accessor :jar
-
-    def self.create!(*args) #:nodoc:
-      self.instance.jar ||= { }
-      self.instance
-    end
    
     # Adds a star to the jar for the user
     #
     # ==== Parameters
     # user<String>:: The user receiving a star. Required.
     #
-    def push(user)
-      @jar[user] ||= 0
-      @jar[user] += 1
+    def push(user, &block)
+      increment! "starjar-#{user}", &block
     end
     
     # Removes a star from the jar for the user
@@ -36,21 +28,23 @@ module Botbckt #:nodoc:
     # ==== Parameters
     # user<String>:: The user being docked a star. Required.
     #
-    def pop(user)
-      @jar[user] ||= 0
+    def pop(user, &block)
+      get "starjar-#{user}" do |stars|
       
-      if @jar[user] == 0
-        return 0
-      else
-        @jar[user] -= 1
+        if stars
+          set "starjar-#{user}", stars - 1, &block
+        else
+          set "starjar-#{user}", 0, &block
+        end
       end
     end
    
     def call(giver, channel, receiver)
       receiver.split(' ').each do |rcv|
         if rcv != freenode_split(giver).first
-          total = push(rcv)
-          say "#{rcv}: Gold star for you! (#{total})", channel
+          push(rcv) do |total|
+            say "#{rcv}: Gold star for you! (#{total})", channel
+          end
         else
           say "#{rcv}: No star for you!", channel
         end
